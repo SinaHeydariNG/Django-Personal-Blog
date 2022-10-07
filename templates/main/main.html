@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- About Start -->
+        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{% static 'img/about.jpg' %}" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header text-left">
+                                <p>Learn About Me</p>
+                                <h2>5 Years Experience</h2>
+                            </div>
+                            <div class="about-text">
+        <p>
+Here you can observe what kinds of skills and capability i have                      
+        </p>
+                            </div>
+                            <div class="skills">
+                                {% for skill in skills %}
+                                <div class="skill-name">
+                                    <p>{{skill.title}}</p><p>{{skill.precentage}}%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{skill.precentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                               {% endfor %}
+                            </div>
+                            <a class="btn" href="">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+        
+        
+        <!-- Service Start -->
+        <div class="service" id="service">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>What I do</p>
+                    <h2>Awesome Quality Services</h2>
+                </div>
+                <div class="row">
+
+                    {% for service in services %}
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <img src="{{service.image.url}}" style="max-width: 100px;" alt="">
+                            </div>
+                            <div class="service-text">
+                                <h3>{{service.title}}</h3>
+                                <p>
+                                   {{service.subtitle}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
+        
+         <!-- Experience Start -->
+         <div class="experience" id="experience">
+            <div class="container">
+                <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>My Resume</p>
+                    <h2>Working Experience</h2>
+                </header>
+                <div class="timeline">
+                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2018 - 2019</div>
+                            <h2>Learning Basics</h2>
+                       
+                            <p>
+In This period of time i started my journey in web development                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right wow slideInRight" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2019 - 2021</div>
+                            <h2>Implemantin of some projects</h2>
+                 
+                            <p>
+In This period of time i was engaging with some web-development projects such as e-commerce websites and personal blogs project to bring my knowlege into action                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2021 - now</div>
+                            <h2>Back End developing</h2>
+                            <p>
+                                In This period of time i have started learning about back-end using python and django
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Job Experience End -->
+        
+        
+        <!-- Banner Start -->
+        <div class="banner wow zoomIn" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>WHERE TO FIND ME ?</p>
+                    <h2>Follow me  <span>ON</span> Social Media</h2>
+                </div>
+<div class="row portfolio-container socialMedia">
+{% for social in socials %}
+<div class="col-lg-3 col-md-3 col-sm-12 wow fadeInUp">
+    <a href="{{social.url}}">
+    <h3>{{social.title}}</h3>
+    <img src="{{social.image.url}}" alt="">
+</a>
+</div>
+{% endfor %}
+
+
+</div>
+            </div>
+        </div>
+        <!-- Banner End -->
+
+
+        <!-- Portfolio Start -->
+        <div class="portfolio" id="portfolio">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>My Portfolio</p>
+                    <h2>My Excellent Portfolio</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul id="portfolio-filter">
+                          {% for category_product in project_categories %}
+                          
+                            <li data-filter=".filter-{{category_product.id}}">{{category_product.title}}</li>
+                       
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+              
+                <div class="row portfolio-container">
+                    {% for project in projects %}
+                    <a href="{% url 'projects:detail' project.slug %}">
+                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-{{project.category.id}} wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="portfolio-wrap">
+                            <div class="portfolio-img">
+                                <img src="{{project.image.url}}" alt="Image">
+                            </div>
+                            <div class="portfolio-text">
+                                <h3>{{project.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio End -->
+        
+
+        
+
+        
+        
+        <!-- Testimonial Start -->
+        <div class="testimonial wow fadeInUp" data-wow-delay="0.1s" id="review">
+            <div class="container">
+                <div class="testimonial-icon">
+                    <i class="fa fa-quote-left"></i>
+                </div>
+                <div class="owl-carousel testimonials-carousel">
+                    {% for contact in contacts %}
+                    {% if contact.subject == 'MESSAGE' and contact.activate == True %}
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="{% static 'img/874681-200.png' %}" alt="Image">
+                        </div>
+                        <div class="testimonial-text">
+                            <p>
+                                {{contact.message}}                            </p>
+                            <h3>{{contact.name}}</h3>
+                            <h4>{{contact.email}}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+{% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+        
+        <!-- Contact Start -->
+        <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <div class="contact-form">
+                                <div id="success"></div>
+                                <form action="{% url 'contact:message' %}" method = "POST" id="contactForm" novalidate">
+                                    {% csrf_token %}
+                
+                                    <div class="control-group">
+{{contact.name}}                                        <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        {{contact.email}}                                         <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        {{contact.subject}}                                         <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                            {{contact.message}} 
+                                   
+                                        <p class="help-block"></p>
+                                    </div>
+                                    <div>
+                                        <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+
+
+        <!-- Blog Start -->
+        <div class="blog" id="blog">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>From Blog</p>
+                    <h2>Latest Articles</h2>
+                </div>
+                <div class="row">
+                    {% for blog in blogs %}
+                    <div class="col-lg-6">
+                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="blog-img">
+                                <img src="{{blog.image.url}}" alt="Blog">
+                            </div>
+                            <div class="blog-text">
+                                <a href="{% url 'blog:detail' blog.slug %}">
+                                <h2>{{blog.title}}</h2>
+                                </a> 
+                                <div class="blog-meta">
+            
+                                    <p><i class="far fa-list-alt"></i>{{blog.category}}</p>
+                                    <p><i class="far fa-calendar-alt"></i>{{blog.date}}</p>
+                                    <p><i class="far fa-user"></i>{{blog.author}}</p>
+ 
+                                </div>      
+                                <p>
+{{blog.content | safe}}                                </p>
+                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+              
+             {% endfor %}
+  
+                
+                </div>
+                <div class="row" style="display: block;">
+                    <div class="col-xs-12">
+                        <a href="{% url 'blog:list' %}">
+                            <button class="btn btn-primary" style="display: block;width: fit-content;margin: 10px auto;">All Articles</button>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        {% endblock content %}        

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- About Start -->
+        <link rel="stylesheet" href="{% static 'css/product.css' %}">
+        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{product.image.url}}" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header text-left">
+                                <h2>{{product.title}}</h2>
+                            </div>
+                            <div class="about-text">
+        <p>
+{{product.subtitle}}                      
+        </p>
+        <div class="blog-meta">
+            
+            <p><i class="far fa-list-alt"></i>{{product.category}}</p>
+            <p><i class="far fa-list-alt"></i>{{product.price}}</p>
+            <p><i class="far fa-list-alt"></i>{{product.discount_price}}</p>
+
+        </div>    
+  
+        <p>
+                            </div>
+
+                   <p>{{product.decription | safe}}</p>
+                   <div class="cartOptions">
+                    <a href="{% url 'shop:add-to-cart' product.pk %}">
+                        <button>Add to Cart</button>
+                    </a>
+                    <a href="{% url 'shop:cart' %}">
+                        <button>View My cart</button>
+                    </a>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+  
+        <!-- Blog End -->
+
+        {% endblock content %}        

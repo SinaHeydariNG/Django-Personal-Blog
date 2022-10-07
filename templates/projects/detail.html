@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- About Start -->
+        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{project.image.url}}" alt="Image">
+                        </div>
+                        <div class="about-img imageGallery">
+                            <h3 class="">Image Gallery</h3>
+                            {% if project.gallery_1 %}
+                            <img src="{{project.gallery_1.url}}" alt="Image">
+                            {% endif %}
+
+                            {% if project.gallery_2 %}
+                            <img src="{{project.gallery_2.url}}" alt="Image">
+                            {% endif %}
+
+                            {% if project.gallery_3 %}
+                            <img src="{{project.gallery_3.url}}" alt="Image">
+                            {% endif %}
+
+                            {% if project.gallery_4 %}
+                            <img src="{{project.gallery_4.url}}" alt="Image">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header text-left">
+                                <h2>{{project.title}}</h2>
+                            </div>
+                            <div class="about-text">
+        <p>
+{{project.subtitle}}                      
+        </p>
+        <div class="blog-meta">
+            
+            <p><i class="far fa-list-alt"></i>{{project.category}}</p>
+            <p><i class="far fa-calendar-alt"></i>{{project.duration}} Days</p>
+
+        </div>      
+        <p>
+                            </div>
+
+                   <ul class="postTags">
+                       <h3>Tags : </h3>
+                   {% for tag in project.tags.all %}
+                     <li>{{tag}}</li>
+                   {% endfor %}
+                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+  
+
+        {% endblock content %}        

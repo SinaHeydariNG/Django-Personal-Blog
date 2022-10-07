@@ -1,0 +1,90 @@
+
+.comments{
+    margin-top: 5%;
+    margin-left: 20px;
+}
+
+
+.comment{
+    border: 1px solid rgba(16, 46, 46, 1);
+    background-color: rgba(16, 46, 46, 0.973);
+    float: left;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px;
+    
+}
+.comment h4,.comment span,.darker h4,.darker span{
+    display: inline;
+}
+
+.comment p,.comment span,.darker p,.darker span{
+    color: rgb(184, 183, 183);
+}
+
+h1,h4{
+    color: white;
+    font-weight: bold;
+}
+label{
+    color: rgb(212, 208, 208);
+}
+
+#align-form{
+    margin-top: 20px;
+}
+.form-group p a{
+    color: white;
+}
+
+#checkbx{
+    background-color: black;
+}
+
+#darker img{
+    margin-right: 15px;
+    position: static;
+}
+
+.form-group input,.form-group textarea{
+    background-color: black;
+    border: 1px solid rgba(16, 46, 46, 1);
+    border-radius: 12px;
+}
+
+form{
+    border: 1px solid rgba(16, 46, 46, 1);
+    background-color: rgba(16, 46, 46, 0.973);
+    border-radius: 5px;
+    padding: 20px;
+ }
+ .comment-box {background: #ef233c;
+    color: black;}
+ .comment-box h4 {}
+ .comment-box span {display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    padding-left: 7px;}
+ .comment-box p {}
+ .comment-box form {background: none;border: none;}
+ .comment-box form textarea{ height: 54px;
+    border-radius: 11px;
+    margin: 10px 0px;}
+    .comment-box form input{ display: block;
+        width: fit-content;
+        padding: 10px 33px;
+        border: none;
+        background: #2196f3;
+        color: white;
+        font-family: monospace;
+        font-size: 19px;
+        border-radius: 13px;}
+ .comment-box form button {}
+ .comment-box .reply-box {    background: #b33443;
+    border: none;
+    margin: 0px 1px;
+    margin-top: 2px!important;}
+ .comment-box .reply-box h4 {}
+ .comment-box .reply-box span {}
+ .comment-box .reply-box p {}   

@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- About Start -->
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{blog.image.url}}" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header text-left">
+                                <p>{{blog.author}}</p>
+                                <h2>{{blog.title}}</h2>
+                            </div>
+                            <div class="about-text">
+        <p>
+{{blog.subtitle}}                      
+        </p>
+        <div class="blog-meta">
+            
+            <p><i class="far fa-list-alt"></i>{{blog.category}}</p>
+            <p><i class="far fa-calendar-alt"></i>{{blog.date}}</p>
+            <p><i class="far fa-user"></i>{{blog.author}}</p>
+            <a href="{% url 'blog:like' blog.id %}">
+                Like
+            </a>
+            {{blog.likes_set.count}}
+
+        </div>      
+        <p>
+                            </div>
+
+                   <p>{{blog.content | safe}}</p>
+                   <ul class="postTags">
+                       <h3>Tags : </h3>
+                   {% for tag in blog.tags.all %}
+                     <li>{{tag}}</li>
+                   {% endfor %}
+                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+  
+        <!-- Comment Section -->
+
+{% if user.is_authenticated  %}
+<nav class="navbar navbar-expand-sm navbar-dark">
+    <img src="https://i.imgur.com/CFpa3nK.jpg" width="20" height="20" class="d-inline-block align-top rounded-circle" alt=""> 
+    <a class="navbar-brand ml-2" href="#" data-abc="true">Rib Simpson</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+    </button>
+    <div class="end">
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav">
+                <li class="nav-item"> <a class="nav-link" href="#" data-abc="true">Work</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#" data-abc="true">Capabilities</a> </li>
+                <li class="nav-item "> <a class="nav-link" href="#" data-abc="true">Articles</a> </li>
+                <li class="nav-item active"> <a class="nav-link mt-2" href="#" data-abc="true" id="clicked">Contact<span class="sr-only">(current)</span></a> </li>
+            </ul>        
+        </div>
+    </div>    
+</nav>
+<!-- Main Body -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-md-6 col-12 pb-4">
+                <h1>Comments - {{comments.count}} -</h1>
+                {% for comment in comments %}
+                {% if comment.is_parent == True %}
+                <div class="comment comment-box mt-4 text-justify float-left">
+                    <!-- <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"> -->
+                    <h4>{{comment.user}}</h4>
+                    <span>{{comment.date}}</span>
+                    <br>
+                    <p>{{comment.content}}</p>
+
+                    {% for reply in comment.children %}
+                    <div class="text-justify darker mt-4 float-left  reply-box">
+
+                        <h4>{{reply.user}}</h4>
+                        <span>{{reply.date}}</span>
+                        <br>
+                        <p>{{reply.content}}</p>
+                    </div>
+    {% endfor %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{add_comment.content}}
+        <input type="hidden" name="parent" value="{{comment.pk}}" id="">
+        <input type="submit" name="" id="" value="submit">
+    </form>
+                 </div>
+                 {% endif %}
+              
+               
+                {% endfor %}
+
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form id="algin-form" method="POST" class="addCommentForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" hidden name="user" value="{{request.user}}" id="">
+                        <h4>Leave a comment</h4>
+                        <label for="message">Message</label>
+                        <span style="opacity: 0;">
+                        {{add_comment.parent}}
+                    </span>
+                        {{add_comment.content}}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" id="post" class="btn">Post Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+        {% endif %}
+
+<!-- Comment Section -->
+        <!-- Blog Start -->
+        <div class="blog" id="blog">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>From Blog</p>
+                    <h2>Latest Articles</h2>
+                </div>
+                <div class="row">
+                    {% for latestblog in blogs %}
+                    <div class="col-lg-6">
+                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="blog-img">
+                                <img src="{{latestblog.image.url}}" alt="Blog">
+                            </div>
+                            <div class="blog-text">
+                                <a href="{% url 'blog:detail' blog.slug %}">
+                                <h2>{{latestblog.title}}</h2>
+                                </a> 
+                                <div class="blog-meta">
+            
+                                    <p><i class="far fa-list-alt"></i>{{latestblog.category}}</p>
+                                    <p><i class="far fa-calendar-alt"></i>{{latestblog.date}}</p>
+                                    <p><i class="far fa-user"></i>{{latestblog.author}}</p>
+                               
+                                </div>      
+                                <p>
+{{latestblog.content | safe}}                                </p>
+                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+         
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        {% endblock content %}        

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!-- Blog Start -->
+        <link rel="stylesheet" href="{% static 'css/product.css' %}">
+        <div class="blog" id="blog">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>Purchase</p>
+                    <h2>All Products</h2>
+                </div>
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-lg-6">
+                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="blog-img">
+                                <img src="{{product.image.url}}" alt="Blog">
+                            </div>
+                            <div class="blog-text">
+                                <a href="{% url 'shop:detail' product.slug %}">
+                                <h2>{{product.title}}</h2>
+                                </a> 
+                                <div class="blog-meta">
+            
+                                    <p><i class="far fa-list-alt"></i>{{product.category}}</p>
+ 
+                                </div>      
+                                <p>
+{{product.decription | safe}}                                </p>
+                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+             {% endfor %}
+                </div>
+
+                <div class="row">
+                
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <h3>All Categories</h3>
+                        <ul class="postTags">
+                            {% for category in categories %}
+                            <a href="{% url 'shop:category' category.slug %}">
+                            <li>{{category.title}}</li>
+                            </a>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <h3>Search Products</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="title" id="" style="border: none;
+                            color: black;
+                            border-left: 7px solid #f3213d;
+                            padding-left: 9px;
+                            background: white;
+                            font-family: cursive;">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        {% endblock content %}        

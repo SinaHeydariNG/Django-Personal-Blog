@@ -1,0 +1,22 @@
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="footer-info">
+                <h2>{{information.title}}</h2>
+                <h3>{{information.location}}</h3>
+                <div class="footer-menu">
+                    <p>{{information.phone}}</p>
+                    <p>{{information.email}}</p>
+                </div>
+                <div class="footer-social">
+                    {% for social in socials %}
+                    <a href="{{social.url}}"><img src="{{social.image.url}}" width="50px" height="50px" alt=""></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; <a href="#">Sina Hedari Nezhad</a>, All Right Reserved | Coded by <a href="https://github.com/SinaHeydariNG">Sina</a></p>
+        </div>
+    </div>
+</div>

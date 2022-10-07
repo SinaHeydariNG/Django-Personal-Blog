@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!-- Blog Start -->
+        <div class="blog blog-list" id="blog">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>From Blog</p>
+                    <h2>All Articles</h2>
+                </div>
+                <div class="row">
+                    {% for blog in blogs %}
+                    <div class="col-lg-6">
+                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="blog-img">
+                                <img src="{{blog.image.url}}" alt="Blog">
+                            </div>
+                            <div class="blog-text">
+                                <a href="{% url 'blog:detail' blog.slug %}">
+                                <h2>{{blog.title}}</h2>
+                                </a> 
+                                <div class="blog-meta">
+            
+                                    <p><i class="far fa-list-alt"></i>{{blog.category}}</p>
+                                    <p><i class="far fa-calendar-alt"></i>{{blog.date}}</p>
+                                    <p><i class="far fa-user"></i>{{blog.author}}</p>
+ 
+                                </div>      
+                                <p>
+{{blog.content | safe}}                                </p>
+                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+             {% endfor %}
+
+
+             {% if blogs.has_other_pages %}
+             <div class="col-lg-12 all msc">
+                 <nav aria-label="Page navigation example">
+                 
+                     <ul class="pagination justify-content-center">
+                     {% if blogs.has_previous %}
+                       <li class="page-item">
+                     <a class="page-link" href="?page={{blogs.previous_page_number}}" tabindex="-1">Previous</a>
+                       </li>
+                       {% endif %}
+             
+                       {% for i in blogs.paginator.page_range %}
+                       {% if blogs.number == i %}
+                       <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                       {% else %}
+                       <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                     {% endif %}
+                       {% endfor %}
+             
+                       {% if blogs.has_next %}
+             
+                       <li class="page-item">
+                         <a class="page-link" href="?page={{blogs.next_page_number}}">Next</a>
+                       </li>
+                       {% endif %}
+             
+                     </ul>
+                   </nav>
+             </div>
+                   {% endif %}
+             
+
+
+
+                </div>
+
+                <div class="row">
+                
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <h3>All Categories</h3>
+                        <ul class="postTags">
+                            {% for category in categories %}
+                            <a href="{% url 'blog:category' category.id %}">
+                            <li>{{category.title}}</li>
+                            </a>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <h3>Search Title</h3>
+                        <form action="{% url 'blog:list' %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="title" id="" style="border: none;
+                            color: black;
+                            border-left: 7px solid #f3213d;
+                            padding-left: 9px;
+                            background: white;
+                            font-family: cursive;">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        {% endblock content %}        
