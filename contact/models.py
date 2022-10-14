@@ -37,9 +37,9 @@ class Contact(models.Model):
 
 
 class Social(models.Model):
-    title = models.CharField(max_length=225)
+    title = models.CharField(max_length=200)
     image = models.ImageField(upload_to = 'social/%y/%m/%d/')
-    url = models.URLField(max_length=1000 , unique=True)
+    url = models.URLField(max_length=200 , unique=True)
 
 
     class Meta:

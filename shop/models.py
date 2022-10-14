@@ -1,6 +1,5 @@
 from email.policy import default
 from itertools import product
-from statistics import quantiles
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
