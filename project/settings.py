@@ -86,11 +86,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'imsina',  
-        'USER': 'root',  
-        'PASSWORD': '6625783Sm',  
-        'HOST': 'localhost',  
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
  
